@@ -17,11 +17,37 @@
 package com.google.samples.apps.nowinandroid.ui.homeworks.homework14
 
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
+import com.google.samples.apps.nowinandroid.core.designsystem.theme.C
 import com.kaspersky.components.composesupport.core.KNode
 import io.github.kakaocup.compose.node.element.ComposeScreen
 
 class MainScreen(semanticProvides: SemanticsNodeInteractionsProvider) :
     ComposeScreen<MainScreen>(semanticProvides) {
+
+    val settingIcon: Any
+        get() {
+            TODO()
+        }
+    val centerAlignedTopAppBar = KNode(semanticProvides) {
+        hasTestTag("niaTopAppBar")
+    }
+
+    val searchIcon = KNode(semanticProvides) {
+        hasContentDescription("Search")
+        hasParent(androidx.compose.ui.test.hasTestTag("niaTopAppBar"))
+        useUnmergedTree = true
+    }
+
+    val titleText = KNode(semanticProvides){
+        hasTestTag(C.Upper_TITLE_TEXT)
+        useUnmergedTree = true
+    }
+
+    val settingsIcon = KNode(semanticProvides){
+        hasContentDescription("Settings")
+        hasParent(androidx.compose.ui.test.hasTestTag("niaTopAppBar"))
+        useUnmergedTree = true
+    }
 
     val doneButton = KNode(semanticProvides) {
         hasText("Done")

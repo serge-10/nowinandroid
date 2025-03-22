@@ -34,6 +34,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.google.samples.apps.nowinandroid.core.designsystem.icon.NiaIcons
+import com.google.samples.apps.nowinandroid.core.designsystem.theme.C
 import com.google.samples.apps.nowinandroid.core.designsystem.theme.NiaTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -50,9 +51,17 @@ fun NiaTopAppBar(
     onActionClick: () -> Unit = {},
 ) {
     CenterAlignedTopAppBar(
-        title = { Text(text = stringResource(id = titleRes)) },
+        title = {
+            Text(
+                text = stringResource(id = titleRes),
+                modifier = Modifier.testTag(C.Upper_TITLE_TEXT)
+            )
+                },
         navigationIcon = {
-            IconButton(onClick = onNavigationClick) {
+            IconButton(
+                onClick = onNavigationClick,
+                modifier = Modifier.testTag(C.UPPER_SEARCH_ICON)
+            ) {
                 Icon(
                     imageVector = navigationIcon,
                     contentDescription = navigationIconContentDescription,
@@ -61,7 +70,10 @@ fun NiaTopAppBar(
             }
         },
         actions = {
-            IconButton(onClick = onActionClick) {
+            IconButton(
+                onClick = onActionClick,
+                modifier = Modifier.testTag(C.UPPER_SETTINGS_ICON)
+            ) {
                 Icon(
                     imageVector = actionIcon,
                     contentDescription = actionIconContentDescription,
