@@ -28,11 +28,14 @@ class SearchScreen(semanticProvides: SemanticsNodeInteractionsProvider) :
         hasTestTag(C.ON_BACK_ICON)
         useUnmergedTree = true
     }
-    val searchIcon = KNode(semanticProvides){
+
+    val searchIcon = KNode(semanticProvides) {
         hasTestTag(C.SEARCH_ICON)
         useUnmergedTree = true
     }
-    val searchTextField = KNode(semanticProvides){
+
+    val searchTextField = KNode(semanticProvides) {
         hasTestTag(C.SEARCH_TEXT_FIELD)
         useUnmergedTree = true
     }
+}
