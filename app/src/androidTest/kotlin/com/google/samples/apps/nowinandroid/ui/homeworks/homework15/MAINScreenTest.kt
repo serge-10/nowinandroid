@@ -16,11 +16,8 @@
 
 package com.google.samples.apps.nowinandroid.ui.homeworks.homework15
 
-import androidx.compose.ui.test.junit4.ComposeTestRule
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import com.google.samples.apps.nowinandroid.MainActivity
-import com.google.samples.apps.nowinandroid.feature.settings.SettingsDialog
-import com.google.samples.apps.nowinandroid.ui.homeworks.homework14.MainScreen
 import com.kaspersky.components.composesupport.config.withComposeSupport
 import com.kaspersky.kaspresso.kaspresso.Kaspresso
 import com.kaspersky.kaspresso.testcases.api.testcase.TestCase
@@ -31,19 +28,42 @@ class MAINScreenTest: TestCase(
     Kaspresso.Builder.withComposeSupport() // Подключаем поддержку Compose
 ) {
 
-    @get: Rule
+    @get:Rule
     val composeTestRule = createAndroidComposeRule<MainActivity>()
-    val mainScreen = MAINScreen(composeTestRule)
-    val settingsDialog = SettingsDialog(composeTestRule)
-    val searchScreenItems = SearchScreenItems(composeTestRule)
+    private val mainScreen = MAINScreen(composeTestRule)
+    private val searchScreenItems = SearchScreen(composeTestRule)
 
     @Test
-    fun checkMainScreenElements(){
-        run {
-            step()
+    fun checkMainScreenElements() = run {
+        step("Проверяем кнопку поиска") {
+            mainScreen.searchIcon.assertIsDisplayed()
+            mainScreen.searchIcon.performClick()
+        }
+
+        step("Проверяем текстовое поле поиска") {
+            searchScreenItems.searchTextField.assertIsDisplayed()
+            searchScreenItems.searchTextField.performTextInput("Test")
+        }
+
+        step("Возвращаемся назад") {
+            searchScreenItems.onBackIcon.assertIsDisplayed()
+            searchScreenItems.onBackIcon.performClick()
+        }
+
+        step("Проверяем нижний тулбар и его кликабельность") {
+            mainScreen.savedIcon.assertIsDisplayed()
+            mainScreen.savedIcon.performClick()
+            composeTestRule.waitForIdle()
+
+            mainScreen.interestsIcon.assertIsDisplayed()
+            mainScreen.interestsIcon.performClick()
+            composeTestRule.waitForIdle()
+
+            mainScreen.forYouIcon.assertIsDisplayed()
+            mainScreen.forYouIcon.performClick()
+            composeTestRule.waitForIdle()
         }
     }
-
-    }
 }
+
 

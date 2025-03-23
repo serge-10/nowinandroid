@@ -17,17 +17,22 @@
 package com.google.samples.apps.nowinandroid.ui.homeworks.homework15
 
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
+import com.google.samples.apps.nowinandroid.core.designsystem.theme.C
 import com.kaspersky.components.composesupport.core.KNode
 import io.github.kakaocup.compose.node.element.ComposeScreen
 
-class SearchScreen(semanticsProvider: SemanticsNodeInteractionsProvider) :
-    ComposeScreen<SearchScreen>(semanticsProvider) {
+class SearchScreen(semanticProvides: SemanticsNodeInteractionsProvider) :
+    ComposeScreen<SearchScreen>(semanticProvides) {
 
-    val searchField = KNode(semanticsProvider) {
-        hasTestTag("searchField")
+    val onBackIcon = KNode(semanticProvides) {
+        hasTestTag(C.ON_BACK_ICON)
+        useUnmergedTree = true
     }
-
-    val resultList = KNode(semanticsProvider) {
-        hasTestTag("searchResultsList")
+    val searchIcon = KNode(semanticProvides){
+        hasTestTag(C.SEARCH_ICON)
+        useUnmergedTree = true
     }
-}
+    val searchTextField = KNode(semanticProvides){
+        hasTestTag(C.SEARCH_TEXT_FIELD)
+        useUnmergedTree = true
+    }
