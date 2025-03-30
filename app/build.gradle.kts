@@ -132,6 +132,9 @@ dependencies {
     androidTestImplementation(libs.hilt.android.testing)
     androidTestImplementation(libs.kotlin.test)
 
+    androidTestImplementation("io.github.kakaocup:compose:0.4.5")
+
+
     baselineProfile(projects.benchmarks)
     implementation ("com.google.android.material:material:1.10.0")
     //implementation "com.kaspersky.android-components:kautomator:1.0.0"
